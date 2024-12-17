@@ -12,6 +12,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.login>sqp_49323417fd9232ef342443bb80b9d448fac18b5b</sonar.login>
+        <sonar.scm.provider>git</sonar.scm.provider>
     </properties>
 
     <dependencies>
@@ -21,6 +23,24 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.9.1.2184</version>
+        </dependency>
+
     </dependencies>
 
-</project>
+    <!-- <build>
+         <plugins>
+             <plugin>
+                 <groupId>org.sonarsource.scanner.maven</groupId>
+                 <artifactId>sonar-maven-plugin</artifactId>
+                 <version>5.0.0.4389</version>
+             </plugin>
+         </plugins>
+     </build>-->
+
+ </project>

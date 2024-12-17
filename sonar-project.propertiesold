@@ -1,0 +1,6 @@
+sonar.projectKey=BinaryCalculator
+sonar.projectName=BinaryCalculator
+sonar.host.url=http://localhost:9000
+sonar.login=admin
+sonar.password=Zoho@123
+sonar.token=sqp_25ee6a469689aa92379b2e45fdc953b4473224a9
