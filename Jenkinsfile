@@ -11,21 +11,21 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') { // Name configured in Jenkins
-                    sh 'mvn sonar:sonar'
+                    bat 'mvn sonar:sonar'
                 }
             }
         }
     }
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+            junit '**\\target\\surefire-reports\\*.xml'
+            archiveArtifacts artifacts: '**\\target\\*.jar', allowEmptyArchive: true
         }
     }
 }
