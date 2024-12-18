@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git credentialsId: 'GLPAT', branch: 'main', url: 'https://github.com/karjanWin/BinaryCalculator.git'
+                git credentialsId: 'github-PAT', branch: 'main', url: 'https://github.com/karjanWin/BinaryCalculator.git'
             }
         }
         stage('Build') {
