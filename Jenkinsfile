@@ -1,27 +1,31 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven-BT' // Use the configured Maven version
+    }
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/karjanWin/BinaryCalculator.git'
+                git credentialsId: 'GLPAT', branch: 'main', url: 'https://github.com/karjanWin/BinaryCalculator.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQube') { // Name configured in Jenkins
                     sh 'mvn sonar:sonar'
                 }
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
+    }
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
         }
     }
 }
