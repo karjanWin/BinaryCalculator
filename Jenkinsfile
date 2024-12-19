@@ -14,10 +14,17 @@ pipeline {
                 bat 'mvn clean package'
             }
         }
-        stage('SonarQube Analysis') {
+       stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarBT') { // Name configured in Jenkins
-                    bat 'mvn sonar:sonar'
+                // Ensure Maven uses the correct paths for SonarQube analysis 
+                bat '''
+                 mvn sonar:sonar ^
+                -Dsonar.projectKey=BDC ^
+                -Dsonar.host.url=http://localhost:9000 ^
+                -Dsonar.login=sqp_c1c8dc770bacf6e56b86eb9240addf3b7ed81603 ^
+                -Dsonar.scm.provider=git
+                '''
                 }
             }
         }
