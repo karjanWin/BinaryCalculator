@@ -16,7 +16,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') { // Name configured in Jenkins
+                withSonarQubeEnv('SonarBT') { // Name configured in Jenkins
                     bat 'mvn sonar:sonar'
                 }
             }
